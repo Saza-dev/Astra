@@ -1,10 +1,9 @@
 import datetime
 import time
 
-from chat_agent import Chat_Agent
-from voice_engine import speak
-from voice_recognizer import command
-
+from core.Assistant import Chat_Agent
+from voice.voice_engine import speak
+from voice.voice_recognizer import command
 
 def cal_day():
     day = datetime.datetime.today().weekday() + 1
@@ -45,3 +44,4 @@ if __name__ == "__main__":
         print("\r",end="",flush=True)
         print(f"Kylie :{response}\n")
         speak(response)
+        

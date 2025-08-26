@@ -18,7 +18,7 @@ def Chat_Agent(q):
 
     qa_task = Task(
         description="Answer the following user question:\n\n{question}",
-        expected_output="A clear and concise answer addressing the user's question in a paragraph",
+        expected_output="A clear and concise answer addressing the user's question in one short user friendly sentence",
         agent=qa_agent
     )
 
