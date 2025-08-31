@@ -1,7 +1,7 @@
 import datetime
 import time
 
-from core.Assistant import Chat_Agent
+from core.Kylie import Kylie
 from voice.voice_engine import speak
 from voice.voice_recognizer import command
 
@@ -34,13 +34,13 @@ def wishMe():
 
 
 if __name__ == "__main__":
-    wishMe()
+    # wishMe()
     while True:
-        query = command().lower()
+        # query = command().lower()
+        query = input ("Enter your command-> ")
         if query == "none":
             continue
-        # query = input ("Enter your command-> ")
-        response = Chat_Agent(query)
+        response = Kylie(query)
         print("\r",end="",flush=True)
         print(f"Kylie :{response}\n")
         speak(response)
