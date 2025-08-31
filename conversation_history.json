@@ -1,0 +1,34 @@
+[
+    {
+        "role": "user",
+        "content": "hello"
+    },
+    {
+        "role": "agent",
+        "content": "Hello! How can I assist you today?"
+    },
+    {
+        "role": "user",
+        "content": "my name is sasanka what is yours ?"
+    },
+    {
+        "role": "agent",
+        "content": "Hello Sasanka! My name is KYLIE."
+    },
+    {
+        "role": "user",
+        "content": "what is my name ?"
+    },
+    {
+        "role": "agent",
+        "content": "Your name is Sasanka."
+    },
+    {
+        "role": "user",
+        "content": "open riot client"
+    },
+    {
+        "role": "agent",
+        "content": "Successfully opened: E:/Riot Games\\Riot Client\\RiotClientElectron\\Riot Client.exe"
+    }
+]
