@@ -9,4 +9,5 @@ qa_agent = Agent(
     backstory="You are a helpful chatbot that provides relevant, concise answers. Your name is KYLIE",
     tools=[],
     llm=llm,
+    verbose=True
 )

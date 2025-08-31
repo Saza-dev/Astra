@@ -1,27 +1,39 @@
 [
     {
         "role": "user",
-        "content": "hello"
+        "content": "open riot client"
     },
     {
         "role": "agent",
-        "content": "Hello! How can I assist you today?"
+        "content": "The Riot client has been successfully opened at the path: E:/Riot Games\\Riot Client\\RiotClientElectron\\Riot Client.exe"
     },
     {
         "role": "user",
-        "content": "my name is sasanka what is yours ?"
+        "content": "search valorant"
     },
     {
         "role": "agent",
-        "content": "Hello Sasanka! My name is KYLIE."
+        "content": "Error opening file: [WinError 5] Access is denied: 'E:/Riot Games\\Valorant\\live\\VALORANT.exe'"
     },
     {
         "role": "user",
-        "content": "what is my name ?"
+        "content": "search valorant"
     },
     {
         "role": "agent",
-        "content": "Your name is Sasanka."
+        "content": "Error opening file: [WinError 5] Access is denied: 'E:/Riot Games\\\\Valorant\\\\live\\\\VALORANT.exe'"
+    },
+    {
+        "role": "user",
+        "content": "open riot"
+    },
+    {
+        "role": "user",
+        "content": "open riot client"
+    },
+    {
+        "role": "agent",
+        "content": "The Riot client has been successfully opened at path E:/Riot Games\\Riot Client\\RiotClientElectron\\Riot Client.exe."
     },
     {
         "role": "user",
@@ -30,5 +42,89 @@
     {
         "role": "agent",
         "content": "Successfully opened: E:/Riot Games\\Riot Client\\RiotClientElectron\\Riot Client.exe"
+    },
+    {
+        "role": "user",
+        "content": "open riot"
+    },
+    {
+        "role": "agent",
+        "content": "File opened successfully: E:/Riot Games\\Riot Client\\RiotClientCrashHandler.exe"
+    },
+    {
+        "role": "user",
+        "content": "open riot client"
+    },
+    {
+        "role": "agent",
+        "content": "The Riot Client was opened successfully at path E:/Riot Games\\Riot Client\\RiotClientElectron\\Riot Client.exe."
+    },
+    {
+        "role": "user",
+        "content": "search riot client"
+    },
+    {
+        "role": "agent",
+        "content": "Confirmation: The file \"Riot Client.exe\" has been successfully opened at path E:/Riot Games\\Riot Client\\RiotClientElectron\\Riot Client.exe."
+    },
+    {
+        "role": "user",
+        "content": "search for riot client tell me the file path"
+    },
+    {
+        "role": "agent",
+        "content": "The file \"Riot Client.exe\" has been successfully opened. Path: E:/Riot Games\\Riot Client\\RiotClientElectron\\Riot Client.exe"
+    },
+    {
+        "role": "user",
+        "content": "search riot client"
+    },
+    {
+        "role": "agent",
+        "content": "Confirmation: Successfully opened file at path E:/Riot Games\\Riot Client\\RiotClientElectron\\Riot Client.exe"
+    },
+    {
+        "role": "user",
+        "content": "open riot client"
+    },
+    {
+        "role": "agent",
+        "content": "Successfully opened the Riot client at E:/Riot Games\\Riot Client\\RiotClientElectron\\Riot Client.exe."
+    },
+    {
+        "role": "user",
+        "content": "search valorant"
+    },
+    {
+        "role": "agent",
+        "content": "Search completed. Found 1 file matching \"valorant\":  \n\n- E:/Riot Games\\Valorant\\live\\VALORANT.exe"
+    },
+    {
+        "role": "user",
+        "content": "search riot client"
+    },
+    {
+        "role": "agent",
+        "content": "Search completed. Found 1 file:\nE:/Riot Games\\Riot Client\\RiotClientElectron\\Riot Client.exe"
+    },
+    {
+        "role": "user",
+        "content": "open riot client"
+    },
+    {
+        "role": "agent",
+        "content": "The Riot client has been successfully opened (E:/Riot Games\\Riot Client\\RiotClientElectron\\Riot Client.exe)."
+    },
+    {
+        "role": "user",
+        "content": "close chrome.exe"
+    },
+    {
+        "role": "user",
+        "content": "close chrome"
+    },
+    {
+        "role": "agent",
+        "content": "Chrome has been successfully closed."
     }
 ]

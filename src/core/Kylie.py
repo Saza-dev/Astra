@@ -22,19 +22,20 @@ def Kylie(q):
 
     
     # Determine if the query is file-related
-    is_file_query = any(keyword in q.lower() for keyword in ['open', 'file', 'search', 'find', 'launch', 'start'])
+    is_file_query = any(keyword in q.lower() for keyword in ['open', 'file', 'search', 'find', 'launch', 'start','close'])
     
     if is_file_query:
         # File-related query
         file_task = Task(
-            description=f"{history_prompt}\n\nProcess this file request: {q}\nSearch for matching files and open the most relevant one.",
-            expected_output="Confirmation of file opened with path, or error message if not found",
+            description=f"Process the file request: {q}\n Do the user requested file operations according to your knowledge",
+            expected_output="Confirmation of the completed file operation, or error message",
             agent=file_agent
         )
         
         crew = Crew(
             agents=[file_agent],
             tasks=[file_task],
+            verbose=True
         )
         
         result = crew.kickoff()
@@ -51,6 +52,7 @@ def Kylie(q):
         crew = Crew(
             agents=[qa_agent],
             tasks=[qa_task],
+            verbose=True
         )
         
         result = crew.kickoff()
