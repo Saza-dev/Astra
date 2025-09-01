@@ -1,11 +1,11 @@
-# Kylie
-Kylie is a voice assistant powered by CrewAI agents. Built in Python, it handles everyday OS tasks (via os) and web actions (via Selenium) locally fast, private, and distraction-free. Your invisible co-pilot for files, apps, and the web.
+# Astra
+Astra is a voice assistant powered by CrewAI agents. Built in Python, it handles everyday OS tasks (via os) and web actions (via Selenium) locally fast, private, and distraction-free. Your invisible co-pilot for files, apps, and the web.
 
 Note: Under Development
 
 ## Current Capabilities
 
-Kylie can currently:
+Astra can currently:
 
 #### 1. File/Folder Operations 🗂️
   - Search Files/Folders 
