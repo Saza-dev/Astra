@@ -3,3 +3,6 @@ SpeechRecognition
 crewai 
 crewai-tools
 pyaudio
+pygetwindow
+screen_brightness_control
+pycaw

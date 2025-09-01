@@ -1,6 +1,15 @@
-from crewai import Agent, Task, Crew, LLM 
+from crewai import Agent, LLM 
 
-llm = LLM(model='groq/openai/gpt-oss-120b')
+from dotenv import load_dotenv
+import os 
+
+# Load the .env file
+load_dotenv()
+
+# Access variables
+MODEL = os.getenv("MODEL")
+llm = LLM(model=MODEL)
+
 
 # QA Agent for general questions
 qa_agent = Agent(

@@ -8,8 +8,15 @@ from tools.files.file_searcher import file_search_tool
 from tools.files.folder_close_tool import close_folder_window
 from tools.files.list_folder_tool import list_folder_tool
 
+from dotenv import load_dotenv
+import os 
 
-llm = LLM(model='groq/openai/gpt-oss-120b')
+# Load the .env file
+load_dotenv()
+
+# Access variables
+MODEL = os.getenv("MODEL")
+llm = LLM(model=MODEL)
 
 file_agent = Agent(
     role="File Manager Agent",
