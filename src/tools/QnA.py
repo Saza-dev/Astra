@@ -11,4 +11,7 @@ def qna_tool(question: str):
     Returns:
         str: The question to present to the user
     """
-    return f"{question}"
+
+    print("Assistant : ",question)
+    user_input = str(input("user : "))
+    return {user_input}
