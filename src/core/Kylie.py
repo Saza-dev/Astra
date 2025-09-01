@@ -1,79 +1,68 @@
+import json
 from dotenv import load_dotenv
 from crewai import Task, Crew
+from agents.router_agent import router_agent
 from core.history import add_to_history, conversation_history
+import re
 
 load_dotenv()
 
 def Kylie(q):
-    """
-    Main function to handle user queries with file operations
-    """
-    
-    # Import agents 
+    router_task = Task(
+        description=(
+            "User query:\n"
+            f"{q}\n\n"
+            "Respond ONLY as JSON with keys 'intent' (FILE_OPS|OS_OPS|QA) and 'reason'."
+        ),
+        expected_output='{"intent":"FILE_OPS|OS_OPS|QA","reason":"..."}',
+        agent=router_agent,
+    )
+    router_crew = Crew(agents=[router_agent], tasks=[router_task], verbose=False)
+    raw = str(router_crew.kickoff()).strip()
+
+    match = re.search(r"\{.*\}", raw, re.DOTALL)
+    if match:
+        try:
+            parsed = json.loads(match.group())
+            intent = parsed.get("intent", "QA").upper()
+        except Exception:
+            intent = "QA"
+    else:
+        intent = "QA"
+
     from src.agents.file_operations import file_agent
     from src.agents.question_answers import qa_agent
     from src.agents.os_operations import os_agent
 
-    
-    # Combine history into a prompt string
     history_prompt = "\n".join([f"{h['role']}: {h['content']}" for h in conversation_history])
 
-    
-    # Determine if the query is file-related
-    is_file_query = any(keyword in q.lower() for keyword in ['open', 'file', 'search', 'find', 'launch', 'start','close','create','delete','list'])
-    is_os_query = any(keyword in q.lower() for keyword in ['connect', 'wifi', 'networks', 'bluetooth', 'disconnect','volume','brightness'])
-    
-    if is_file_query:
-        # File-related query
-        file_task = Task(
-            description=f"Process the file request: {q}\n Do the user requested file operations according to your knowledge",
-            expected_output="Confirmation of the completed file operation, or error message",
-            agent=file_agent
+    if intent == "FILE_OPS":
+        task = Task(
+            description=f"Process the file request: {q}\nPerform only the requested file operations.",
+            expected_output="A one-line confirmation of the file operation or a clear error message.",
+            agent=file_agent,
         )
-        
-        crew = Crew(
-            agents=[file_agent],
-            tasks=[file_task],
-            verbose=True
-        )
-        
+        crew = Crew(agents=[file_agent], tasks=[task], verbose=True)
         result = crew.kickoff()
 
-    elif is_os_query:
-        # Os related query
-        os_task = Task(
-            description=f"Process the os request: {q}\n Do the user requested os operations according to your knowledge and you must use a given tool.",
-            expected_output="Confirmation of the completed os operation, or error message",
-            agent=os_agent
+    elif intent == "OS_OPS":
+        task = Task(
+            description=f"Process the OS request: {q}\nUse available OS tools and confirm results.",
+            expected_output="A one-line confirmation of the OS operation or a clear error message.",
+            agent=os_agent,
         )
-        
-        crew = Crew(
-            agents=[os_agent],
-            tasks=[os_task],
-            verbose=True
-        )
-        
+        crew = Crew(agents=[os_agent], tasks=[task], verbose=True)
         result = crew.kickoff()
 
     else:
-        # Add user input to history
         add_to_history("user", q)
-        
-        # General Q&A
-        qa_task = Task(
+        task = Task(
             description=f"{history_prompt}\n\nAnswer this question: {q}",
-            expected_output="A clear and concise answer addressing the user's question",
-            agent=qa_agent
+            expected_output="A concise, correct answer.",
+            agent=qa_agent,
         )
-        
-        crew = Crew(
-            agents=[qa_agent],
-            tasks=[qa_task],
-            verbose=True
-        )
-        
+        crew = Crew(agents=[qa_agent], tasks=[task], verbose=True)
         result = crew.kickoff()
-    
         add_to_history("agent", str(result))
 
     return str(result)
