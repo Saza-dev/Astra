@@ -19,7 +19,7 @@ def Kylie(q):
 
     
     # Determine if the query is file-related
-    is_file_query = any(keyword in q.lower() for keyword in ['open', 'file', 'search', 'find', 'launch', 'start','close','create','delete'])
+    is_file_query = any(keyword in q.lower() for keyword in ['open', 'file', 'search', 'find', 'launch', 'start','close','create','delete','show'])
     
     if is_file_query:
         # File-related query

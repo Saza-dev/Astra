@@ -33,7 +33,13 @@ class FileIndexer:
                     if file_lower not in file_index:
                         file_index[file_lower] = []
                     file_index[file_lower].append(os.path.join(root, file))
-        
+
+                for d in dirs:
+                    dir_lower = d.lower()
+                    if dir_lower not in file_index:
+                        file_index[dir_lower] = []
+                    file_index[dir_lower].append(os.path.join(root, d))
+                    
         return file_index
     
     def search(self, query: str, search_type: str = 'contains', max_results: int = 10) -> List[str]:
