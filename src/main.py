@@ -34,7 +34,6 @@ def wishMe():
 
 
 if __name__ == "__main__":
-    # wishMe()
     while True:
         # query = command().lower()
         query = input ("Enter your command-> ")
@@ -42,6 +41,6 @@ if __name__ == "__main__":
             continue
         response = Kylie(query)
         print("\r",end="",flush=True)
-        print(f"Kylie :{response}\n")
+        print(f"Assistant: {response}\n")
         speak(response)
         

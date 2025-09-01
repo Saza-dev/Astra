@@ -8,9 +8,6 @@ def Kylie(q):
     """
     Main function to handle user queries with file operations
     """
-
-    # Add user input to history
-    add_to_history("user", q)
     
     # Import agents 
     from src.agents.file_operations import file_agent
@@ -22,7 +19,7 @@ def Kylie(q):
 
     
     # Determine if the query is file-related
-    is_file_query = any(keyword in q.lower() for keyword in ['open', 'file', 'search', 'find', 'launch', 'start','close'])
+    is_file_query = any(keyword in q.lower() for keyword in ['open', 'file', 'search', 'find', 'launch', 'start','close','create','delete'])
     
     if is_file_query:
         # File-related query
@@ -42,6 +39,9 @@ def Kylie(q):
 
 
     else:
+        # Add user input to history
+        add_to_history("user", q)
+        
         # General Q&A
         qa_task = Task(
             description=f"{history_prompt}\n\nAnswer this question: {q}",
@@ -57,5 +57,6 @@ def Kylie(q):
         
         result = crew.kickoff()
     
-    add_to_history("agent", str(result))
+        add_to_history("agent", str(result))
+
     return str(result)

@@ -1,130 +1,18 @@
 [
     {
         "role": "user",
-        "content": "open riot client"
+        "content": "my windows user name is saza"
     },
     {
         "role": "agent",
-        "content": "The Riot client has been successfully opened at the path: E:/Riot Games\\Riot Client\\RiotClientElectron\\Riot Client.exe"
+        "content": "Your Windows user name is **saza**."
     },
     {
         "role": "user",
-        "content": "search valorant"
+        "content": "delete folder hello from my desktop the path is c:/Users/saza/Desktop"
     },
     {
         "role": "agent",
-        "content": "Error opening file: [WinError 5] Access is denied: 'E:/Riot Games\\Valorant\\live\\VALORANT.exe'"
-    },
-    {
-        "role": "user",
-        "content": "search valorant"
-    },
-    {
-        "role": "agent",
-        "content": "Error opening file: [WinError 5] Access is denied: 'E:/Riot Games\\\\Valorant\\\\live\\\\VALORANT.exe'"
-    },
-    {
-        "role": "user",
-        "content": "open riot"
-    },
-    {
-        "role": "user",
-        "content": "open riot client"
-    },
-    {
-        "role": "agent",
-        "content": "The Riot client has been successfully opened at path E:/Riot Games\\Riot Client\\RiotClientElectron\\Riot Client.exe."
-    },
-    {
-        "role": "user",
-        "content": "open riot client"
-    },
-    {
-        "role": "agent",
-        "content": "Successfully opened: E:/Riot Games\\Riot Client\\RiotClientElectron\\Riot Client.exe"
-    },
-    {
-        "role": "user",
-        "content": "open riot"
-    },
-    {
-        "role": "agent",
-        "content": "File opened successfully: E:/Riot Games\\Riot Client\\RiotClientCrashHandler.exe"
-    },
-    {
-        "role": "user",
-        "content": "open riot client"
-    },
-    {
-        "role": "agent",
-        "content": "The Riot Client was opened successfully at path E:/Riot Games\\Riot Client\\RiotClientElectron\\Riot Client.exe."
-    },
-    {
-        "role": "user",
-        "content": "search riot client"
-    },
-    {
-        "role": "agent",
-        "content": "Confirmation: The file \"Riot Client.exe\" has been successfully opened at path E:/Riot Games\\Riot Client\\RiotClientElectron\\Riot Client.exe."
-    },
-    {
-        "role": "user",
-        "content": "search for riot client tell me the file path"
-    },
-    {
-        "role": "agent",
-        "content": "The file \"Riot Client.exe\" has been successfully opened. Path: E:/Riot Games\\Riot Client\\RiotClientElectron\\Riot Client.exe"
-    },
-    {
-        "role": "user",
-        "content": "search riot client"
-    },
-    {
-        "role": "agent",
-        "content": "Confirmation: Successfully opened file at path E:/Riot Games\\Riot Client\\RiotClientElectron\\Riot Client.exe"
-    },
-    {
-        "role": "user",
-        "content": "open riot client"
-    },
-    {
-        "role": "agent",
-        "content": "Successfully opened the Riot client at E:/Riot Games\\Riot Client\\RiotClientElectron\\Riot Client.exe."
-    },
-    {
-        "role": "user",
-        "content": "search valorant"
-    },
-    {
-        "role": "agent",
-        "content": "Search completed. Found 1 file matching \"valorant\":  \n\n- E:/Riot Games\\Valorant\\live\\VALORANT.exe"
-    },
-    {
-        "role": "user",
-        "content": "search riot client"
-    },
-    {
-        "role": "agent",
-        "content": "Search completed. Found 1 file:\nE:/Riot Games\\Riot Client\\RiotClientElectron\\Riot Client.exe"
-    },
-    {
-        "role": "user",
-        "content": "open riot client"
-    },
-    {
-        "role": "agent",
-        "content": "The Riot client has been successfully opened (E:/Riot Games\\Riot Client\\RiotClientElectron\\Riot Client.exe)."
-    },
-    {
-        "role": "user",
-        "content": "close chrome.exe"
-    },
-    {
-        "role": "user",
-        "content": "close chrome"
-    },
-    {
-        "role": "agent",
-        "content": "Chrome has been successfully closed."
+        "content": "To delete the **hello** folder from your desktop, you can run one of the following commands in a Command Prompt or PowerShell window (run as your user **saza** or as Administrator if needed).\n\n**Using Command Prompt (cmd.exe):**\n```cmd\nrmdir /S /Q \"C:\\Users\\saza\\Desktop\\hello\"\n```\n- `/S` removes the folder and all of its contents.\n- `/Q` runs the command in quiet mode (no confirmation prompts).\n\n**Using PowerShell:**\n```powershell\nRemove-Item -Recurse -Force \"C:\\Users\\saza\\Desktop\\hello\"\n```\n- `-Recurse` deletes all files/subfolders inside.\n- `-Force` suppresses confirmation prompts.\n\n**Steps to execute:**\n1. Press **Win\u202f+\u202fR**, type `cmd` (or `powershell`), and press **Enter**.\n2. Copy the appropriate command above.\n3. Paste it into the window and press **Enter**.\n\nThe **hello** folder and everything inside it will be permanently deleted from `C:\\Users\\saza\\Desktop`."
     }
 ]
