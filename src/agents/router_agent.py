@@ -42,6 +42,7 @@ router_agent = Agent(
         """
     ),
     allow_delegation=False,
-    verbose=True,
+    verbose=False,
+    memory=True,
     llm = llm 
 )

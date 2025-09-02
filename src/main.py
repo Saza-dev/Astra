@@ -1,4 +1,4 @@
-from core.Kylie import Kylie
+from core.Astra import Astra
 from voice.voice_engine import speak
 from voice.voice_recognizer import command
 
@@ -9,7 +9,7 @@ if __name__ == "__main__":
         query = input ("Enter your command-> ")
         if query == "none":
             continue
-        response = Kylie(query)
+        response = Astra(query)
         print("\r",end="",flush=True)
         print(f"Assistant: {response}\n")
         speak(response)

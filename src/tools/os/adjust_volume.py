@@ -22,8 +22,8 @@ def set_volume_tool(level: int) -> str:
         if 0 <= level <= 100:
             volume = _get_volume_interface()
             volume.SetMasterVolumeLevelScalar(level / 100, None)
-            return f"🔊 Volume set to {level}%"
+            return {"success": True, "message": f"Volume set to {level}%"}
         else:
-            return "⚠️ Please provide a value between 0 and 100."
+            return {"success": False, "message": "Provide a value between 0 and 100."}
     except Exception as e:
-        return f"❌ Error setting volume: {str(e)}"
+        return {"success": False, "message": f"Error setting volume: {e}"}

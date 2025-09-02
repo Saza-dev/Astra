@@ -7,7 +7,7 @@ from crewai.tools import tool
 def file_open_tool(path: str) -> str:
     
     """
-    Open a file with the default application.
+    Open a file or folder.
     Args:
         path: Full file path to open
     Returns:
@@ -16,8 +16,8 @@ def file_open_tool(path: str) -> str:
 
     try:
         if not os.path.exists(path):
-            return f"Error: File does not exist at {path}"
+            return {"success": False, "message": f"Path does not exist: {path}"}
         os.startfile(path)
-        return f"Successfully opened: {path}"
+        return {"success": True, "message": f"Opened: {path}"}
     except Exception as e:
-        return f"Error opening file: {str(e)}"
+        return {"success": False, "message": f"Error opening '{path}': {e}"}

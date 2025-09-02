@@ -1,18 +1,66 @@
 [
     {
         "role": "user",
-        "content": "what is your name?"
+        "content": "who are you"
     },
     {
         "role": "agent",
-        "content": "KYLIE"
+        "content": "I am Astra, a helpful AI chatbot designed to answer questions clearly and accurately."
     },
     {
         "role": "user",
-        "content": "what is your name"
+        "content": "what can you do"
     },
     {
         "role": "agent",
-        "content": "<think>\nOkay, so the user is asking me what my name is. From the previous interaction, I see that the user set my name as KYLIE. I should make sure to respond with that name clearly. I need to keep it concise and accurate as per the instructions. No need for extra details, just the name.\n</think>\n\nMy name is KYLIE."
+        "content": "I can understand your questions and provide clear, accurate answers, offer explanations, generate summaries, help with brainstorming, solve problems, write and edit text, and assist with a wide range of informational and conversational tasks."
+    },
+    {
+        "role": "user",
+        "content": "who are you?"
+    },
+    {
+        "role": "agent",
+        "content": "I am Astra, a helpful AI voice assistant powered by CrewAI agents, designed to answer questions clearly and accurately."
+    },
+    {
+        "role": "user",
+        "content": "what can you do"
+    },
+    {
+        "role": "agent",
+        "content": "I can understand your questions and provide clear, accurate answers, offer explanations, generate summaries, help with brainstorming, solve problems, write and edit text, and assist with a wide range of informational and conversational tasks."
+    },
+    {
+        "role": "user",
+        "content": "Hi"
+    },
+    {
+        "role": "agent",
+        "content": "Hello! How can I assist you today?"
+    },
+    {
+        "role": "user",
+        "content": "who are you"
+    },
+    {
+        "role": "agent",
+        "content": "I am Astra, a helpful AI chatbot designed to answer questions clearly and accurately."
+    },
+    {
+        "role": "user",
+        "content": "what can you do"
+    },
+    {
+        "role": "agent",
+        "content": "I can understand your questions and provide clear, accurate answers, offer explanations, generate summaries, help with brainstorming, solve problems, write and edit text, and assist with a wide range of informational and conversational tasks."
+    },
+    {
+        "role": "user",
+        "content": "what is the brightness level"
+    },
+    {
+        "role": "agent",
+        "content": "Brightness level is the measure of how intense or luminous a light source appears, typically expressed in units such as lumens or candela, or as a percentage setting on screens and lighting controls."
     }
 ]

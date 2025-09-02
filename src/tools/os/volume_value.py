@@ -20,6 +20,7 @@ def get_volume_tool() -> str:
     try:
         volume = _get_volume_interface()
         current = volume.GetMasterVolumeLevelScalar()
-        return f"🔉 Current volume: {math.floor(current * 100)}%"
+        pct = math.floor(current * 100)
+        return {"success": True, "message": f"🔉 Current volume: {pct}%","value": pct}
     except Exception as e:
-        return f"❌ Error getting volume: {str(e)}"
+        return {"success": False, "message": f"Error getting volume: {e}"}

@@ -15,8 +15,13 @@ llm = LLM(model=MODEL)
 qa_agent = Agent(
     role="Question Answering Chatbot",
     goal="Answer user questions clearly and accurately",
-    backstory="You are a helpful chatbot that provides relevant, concise answers. Your name is KYLIE",
+    backstory=(
+            "You are Astra, a concise and helpful chatbot. "
+        "Answer directly, cite facts when certain, and say when you don't know. "
+        "Do not claim to perform local actions or web browsing—you have no tools. "
+        "Prefer short, clear answers (1–4 sentences) unless the question requires more."),
     tools=[],
     llm=llm,
-    verbose=True
+    verbose=False,
+    memory=True,
 )

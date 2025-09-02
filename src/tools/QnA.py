@@ -3,15 +3,13 @@ from crewai.tools import tool
 @tool("qna_tool")
 def qna_tool(question: str):
     """
-    Ask the user for clarification or missing information.
+    Ask the user for clarification.
     
     Args:
-        question (str): The clarification question to ask the user
+        question (str): The clarification question to show the user.
     
     Returns:
-        str: The question to present to the user
+        str: A marker string prefixed with '__QNA__:' that your runner will detect
+             and handle by prompting the user outside the tool execution.
     """
-
-    print("Assistant : ",question)
-    user_input = str(input("user : "))
-    return {user_input}
+    return f"__QNA__:{question}"

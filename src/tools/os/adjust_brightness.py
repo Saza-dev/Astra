@@ -14,9 +14,9 @@ def set_brightness_tool(level: int) -> str:
     """
     try:
         if 0 <= level <= 100:
-            sbc.set_brightness(level)
-            return f"✅ Brightness set to {level}%"
+            sbc.set_brightness(level,method="wmi")
+            return {"success": True, "message": f"Brightness set to {level}%"}
         else:
-            return "⚠️ Please provide a value between 0 and 100."
+            return {"success": False, "message": "Provide a value between 0 and 100."}
     except Exception as e:
-        return f"❌ Error setting brightness: {str(e)}"
+        return {"success": False, "message": f"Error setting brightness: {e}"}

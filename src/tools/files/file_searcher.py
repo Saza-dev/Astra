@@ -69,8 +69,10 @@ class FileIndexer:
         
         return results
 
+
+
 # Global indexer instance
-indexer = FileIndexer(drives=["D:/", "E:/"])
+indexer = FileIndexer(drives=["D:/","E:/"])
 
 @tool("file_search_tool")
 def file_search_tool(query: str, search_type: str = "contains", return_first: bool = True) -> str:
@@ -85,7 +87,7 @@ def file_search_tool(query: str, search_type: str = "contains", return_first: bo
     """
     try:
         if not query or len(query) < 2:
-            return json.dumps({"error": "Query too short. Please provide at least 2 characters."})
+            return {"success": False, "message": "Query too short. Provide at least 2 characters."}
         
         results = indexer.search(query, search_type, max_results=5)
         
@@ -98,22 +100,11 @@ def file_search_tool(query: str, search_type: str = "contains", return_first: bo
                         break
         if results:
             if return_first:
-                return json.dumps({
-                    "found": True,
-                    "path": results[0],
-                    "total_found": len(results)
-                })
+                return {"success": True, "found": True, "path": results[0], "total_found": len(results), "message": "Found"}
             else:
-                return json.dumps({
-                    "found": True,
-                    "paths": results[:5],
-                    "total_found": len(results)
-                })
+                return {"success": True, "found": True, "paths": results[:5], "total_found": len(results), "message": "Found"}
         else:
-            return json.dumps({
-                "found": False,
-                "message": f"No files found matching '{query}'"
-            })
+            return {"success": True, "found": False, "paths": [], "total_found": 0, "message": f"No matches for '{query}'"}
             
     except Exception as e:
-        return json.dumps({"error": f"Search failed: {str(e)}"})
+        return {"success": False, "message": f"Search failed: {e}"}

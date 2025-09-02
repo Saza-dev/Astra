@@ -10,7 +10,10 @@ def get_brightness_tool() -> str:
         str: Current brightness percentage
     """
     try:
-        level = sbc.get_brightness(display=0)  # main display
-        return f"🌞 Current brightness: {level[0]}%"
+        levels = sbc.get_brightness(display=0)  # returns list
+        val = int(levels[0]) if levels else None
+        if val is None:
+            return {"success": False, "message": "No brightness value returned."}
+        return {"success": True, "message": f"🌞 Current brightness: {val}%","value": val}
     except Exception as e:
-        return f"❌ Error getting brightness: {str(e)}"
+        return {"success": False, "message": f"Error getting brightness: {e}"}
