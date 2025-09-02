@@ -1,5 +1,5 @@
 # Astra
-Astra is a voice assistant powered by CrewAI agents. Built in Python, it handles everyday OS tasks (via os) and web actions (via Selenium) locally fast, private, and distraction-free. Your invisible co-pilot for files, apps, and the web.
+Astra is a voice assistant powered by CrewAI agents. Built in Python, it handles everyday OS tasks (via os and powershell) and web actions (via Selenium) locally fast, private, and distraction-free. Your invisible co-pilot for files, apps, and the web.
 
 Note: Under Development
 
