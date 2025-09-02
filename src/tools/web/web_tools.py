@@ -8,36 +8,51 @@ from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 import base64
 
-def _driver(headless=True):
+def _driver():
     opts = webdriver.ChromeOptions()
-    if headless:
-        opts.add_argument("--headless=new")
     opts.add_argument("--no-sandbox")
     opts.add_argument("--disable-dev-shm-usage")
     opts.add_argument("--window-size=1400,900")
     return webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=opts)
 
+def _driver():
+    opts = webdriver.ChromeOptions()
+    # make it visible & keep it open
+    opts.add_experimental_option("detach", True)
+    opts.add_argument("--start-maximized")
+    # keep these only if you need them (Docker/CI). On desktop you can drop them:
+    # opts.add_argument("--no-sandbox")
+    # opts.add_argument("--disable-dev-shm-usage")
+    # opts.add_argument("--window-size=1400,900")
+    return webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=opts)
+
+def _norm(url: str) -> str:
+    url = url.strip()
+    if not url.startswith(("http://", "https://")):
+        return "https://" + url
+    return url
+
 @tool("visit_site")
 def visit_site(url: str) -> str:
-    """Open URL and return 'TITLE: ... | H1: ...'."""
-    d = _driver(headless=True)
+    """Open URL and leave the window open."""
+    d = _driver()
+    url = _norm(url)
+    d.get(url)
+    WebDriverWait(d, 15).until(EC.presence_of_element_located((By.TAG_NAME, "body")))
+    title = d.title or ""
+    h1 = ""
     try:
-        d.get(url)
-        WebDriverWait(d, 15).until(EC.presence_of_element_located((By.TAG_NAME, "body")))
-        title = d.title or ""
-        h1 = ""
-        try:
-            h1 = d.find_element(By.TAG_NAME, "h1").text.strip()
-        except Exception:
-            pass
-        return f"TITLE: {title} | H1: {h1}"
-    finally:
-        d.quit()
+        h1 = d.find_element(By.TAG_NAME, "h1").text.strip()
+    except Exception:
+        pass
+    # DO NOT quit so you can see it
+    return f"TITLE: {title} | H1: {h1} | URL: {url}"
+
 
 @tool("simple_search")
 def simple_search(query: str) -> str:
     """Search DuckDuckGo for 'query' and return top 5 'title — link' lines."""
-    d = _driver(headless=True)
+    d = _driver()
     try:
         d.get("https://duckduckgo.com/")
         WebDriverWait(d, 15).until(EC.presence_of_element_located((By.ID, "searchbox_input")))
@@ -58,7 +73,7 @@ def simple_search(query: str) -> str:
 @tool("page_screenshot_b64")
 def page_screenshot_b64(url: str) -> str:
     """Open URL and return a base64 PNG screenshot (short strings only)."""
-    d = _driver(headless=True)
+    d = _driver()
     try:
         d.get(url)
         WebDriverWait(d, 15).until(EC.presence_of_element_located((By.TAG_NAME, "body")))
@@ -66,3 +81,5 @@ def page_screenshot_b64(url: str) -> str:
         return base64.b64encode(png).decode("utf-8")
     finally:
         d.quit()
+
+
