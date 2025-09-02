@@ -1,66 +1,42 @@
 [
     {
-        "role": "user",
-        "content": "who are you"
-    },
-    {
         "role": "agent",
-        "content": "I am Astra, a helpful AI chatbot designed to answer questions clearly and accurately."
+        "content": "Playing \"Despacito\" on YouTube."
     },
     {
         "role": "user",
-        "content": "what can you do"
+        "content": " the next"
     },
     {
         "role": "agent",
-        "content": "I can understand your questions and provide clear, accurate answers, offer explanations, generate summaries, help with brainstorming, solve problems, write and edit text, and assist with a wide range of informational and conversational tasks."
+        "content": "I\u2019m not sure what you mean by \u201cthe next.\u201d Could you clarify what you\u2019re asking for?"
     },
     {
         "role": "user",
-        "content": "who are you?"
+        "content": "play the next video"
     },
     {
         "role": "agent",
-        "content": "I am Astra, a helpful AI voice assistant powered by CrewAI agents, designed to answer questions clearly and accurately."
+        "content": "Played the next video on YouTube."
     },
     {
         "role": "user",
-        "content": "what can you do"
+        "content": "pause it"
     },
     {
         "role": "agent",
-        "content": "I can understand your questions and provide clear, accurate answers, offer explanations, generate summaries, help with brainstorming, solve problems, write and edit text, and assist with a wide range of informational and conversational tasks."
+        "content": "Video paused successfully."
     },
     {
         "role": "user",
-        "content": "Hi"
+        "content": "mute the video"
     },
     {
         "role": "agent",
-        "content": "Hello! How can I assist you today?"
+        "content": "Video muted successfully."
     },
     {
         "role": "user",
-        "content": "who are you"
-    },
-    {
-        "role": "agent",
-        "content": "I am Astra, a helpful AI chatbot designed to answer questions clearly and accurately."
-    },
-    {
-        "role": "user",
-        "content": "what can you do"
-    },
-    {
-        "role": "agent",
-        "content": "I can understand your questions and provide clear, accurate answers, offer explanations, generate summaries, help with brainstorming, solve problems, write and edit text, and assist with a wide range of informational and conversational tasks."
-    },
-    {
-        "role": "user",
-        "content": "what is the brightness level"
-    },
-    {
-        "role": "agent",
-        "content": "Brightness level is the measure of how intense or luminous a light source appears, typically expressed in units such as lumens or candela, or as a percentage setting on screens and lighting controls."
+        "content": "play the video"
     }
 ]

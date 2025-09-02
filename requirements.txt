@@ -6,3 +6,5 @@ pyaudio
 pygetwindow
 screen_brightness_control
 pycaw
+selenium
+webdriver-manager

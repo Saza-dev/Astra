@@ -1,6 +1,7 @@
 import json
 from dotenv import load_dotenv
 from crewai import Task, Crew
+from agents.web_agent import web_agent
 from agents.router_agent import router_agent
 from core.history import add_to_history, conversation_history
 import re
@@ -25,12 +26,17 @@ def _handle_possible_qna(result, base_desc, agent, expected_output, rounds=2):
     return last
 
 def Astra(q):
+
+    history_prompt = "\n".join([f"{h['role']}: {h['content']}" for h in conversation_history])
+
+    add_to_history("user", q)
     # Route to intent
     router_task = Task(
         description=(
+            f"{history_prompt}\n\n"
             "User query:\n"
             f"{q}\n\n"
-            "Respond ONLY as JSON with keys 'intent' (FILE_OPS|OS_OPS|QA) and 'reason'."
+            "Respond ONLY as JSON with keys 'intent' (FILE_OPS|OS_OPS|WEB_OPS|QA) and 'reason'."
         ),
         expected_output='{"intent":"FILE_OPS|OS_OPS|QA","reason":"..."}',
         agent=router_agent,
@@ -52,10 +58,10 @@ def Astra(q):
     from src.agents.question_answers import qa_agent
     from src.agents.os_operations import os_agent
 
-    history_prompt = "\n".join([f"{h['role']}: {h['content']}" for h in conversation_history])
+    
 
     if intent == "FILE_OPS":
-        base_desc = f"Process the file request: {q}\nPerform only the requested file operations. You MUST use tools; do not answer from memory.\n"
+        base_desc = f"{history_prompt}\n\nProcess the file request: {q}\nPerform only the requested file operations. You MUST use tools; do not answer from memory.\n"
         expected = "A one-line confirmation of the file operation or a clear error message."
         task = Task(description=base_desc, expected_output=expected, agent=file_agent)
         crew = Crew(agents=[file_agent], tasks=[task], verbose=False)
@@ -63,21 +69,55 @@ def Astra(q):
         result = _handle_possible_qna(result, base_desc, file_agent, expected, rounds=3)
 
     elif intent == "OS_OPS":
-        base_desc = f"Process the OS request: {q}\nUse available OS tools and confirm results. You MUST use tools; do not answer from memory.\n"
+        base_desc = f"{history_prompt}\n\nProcess the OS request: {q}\nUse available OS tools and confirm results. You MUST use tools; do not answer from memory.\n"
         expected = "A one-line confirmation of the OS operation or a clear error message."
         task = Task(description=base_desc, expected_output=expected, agent=os_agent)
         crew = Crew(agents=[os_agent], tasks=[task], verbose=False)
         result = crew.kickoff()
         result = _handle_possible_qna(result, base_desc, os_agent, expected, rounds=3)
+    
+    elif intent == "WEB_OPS":
+
+        COMMON_RULES = """
+        Rules:
+        - You MUST use tools; do not answer from memory.
+        - Choose the single best tool (or a short sequence) to fulfill the request.
+        - Prefer headless browsing unless audio/video playback is explicitly requested.
+        - Return a ONE-LINE final answer: either a short confirmation or key data.
+        - If something fails, return a clear one-line error describing which step failed.
+        - When using youtube_control, pass a single argument named 'payload' (dict or JSON string).
+        """
+
+        base_desc = (
+            f"{history_prompt}\n\n"
+            f"User request: {q}\n"
+            f"{COMMON_RULES}\n"
+            "Examples:\n"
+            "- 'Open https://example.com and give me the title' -> visit_site(url)\n"
+            "- 'Search for top 5 Rust frameworks' -> simple_search(query)\n"
+            "- 'Play lofi hip hop on YouTube at 20% volume' -> call youtube_control twice:\n"
+            "   Action: youtube_control\n"
+            "   Action Input: {\"payload\": {\"action\":\"play_query\",\"query\":\"lofi hip hop\",\"headless\":false}}\n"
+            "   Action: youtube_control\n"
+            "   Action Input: {\"payload\": {\"action\":\"volume\",\"percent\":20}}\n"
+            "- 'Screenshot this page' -> page_screenshot_b64(url)\n"
+        )
+
+        expected = "Return exactly one line: success confirmation or a short data snippet."
+
+        task = Task(description=base_desc, expected_output=expected, agent=web_agent)
+        crew = Crew(agents=[web_agent], tasks=[task], verbose=True)
+        result = crew.kickoff()
+        result = _handle_possible_qna(result, base_desc, web_agent, expected, rounds=3)
 
     else:
-        add_to_history("user", q)
+        
         base_desc = f"{history_prompt}\n\nAnswer this question: {q}"
         expected = "A concise, correct answer."
         task = Task(description=base_desc, expected_output=expected, agent=qa_agent)
         crew = Crew(agents=[qa_agent], tasks=[task], verbose=False)
         result = crew.kickoff()
-        result = _handle_possible_qna(result, base_desc, qa_agent, expected, rounds=2)
-        add_to_history("agent", str(result))
-
+        result = _handle_possible_qna(result, base_desc, qa_agent, expected, rounds=3)
+        
+    add_to_history("agent", str(result))
     return str(result)

@@ -14,7 +14,7 @@ def add_to_history(role, content):
     global conversation_history
     conversation_history.append({"role": role, "content": content})
     
-    MAX_HISTORY = 50
+    MAX_HISTORY = 10
     if len(conversation_history) > MAX_HISTORY:
         conversation_history = conversation_history[-MAX_HISTORY:]
 
