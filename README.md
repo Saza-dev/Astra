@@ -19,10 +19,14 @@ Astra can currently:
   - Show/Connect/Disconnect wifi, blutooth devices
   - Adjust/Show Screen brightness and volume
 
-#### 3. Youtube 
+#### 3. Web Operations 📲
+  - Visit Websites
+  - Simple Searches
+
+#### 4. Youtube 
   - Every youtube action (Ex: Play , pause, toggle, search, mute, volume, subscribe and much moree..... )
 
-#### 3. Ask for clarification ❓
+#### 5. Ask for clarification ❓
   - If the user command lacks enough information, Kylie asks follow-up questions and waits for user input before proceeding.
 
 
