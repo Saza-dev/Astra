@@ -30,5 +30,8 @@ Astra can currently:
   - If the user command lacks enough information, Kylie asks follow-up questions and waits for user input before proceeding.
 
 
-
+Create a `.env` file in the root with:
+```
+MODEL='Model You are hoping to use'
+```
 
